@@ -198,8 +198,8 @@ body.onkeydown = function (e) {
       addLineNumber = document.createElement("span");
       addLineNumber.setAttribute("class", "lineStart")
       var numberOfLine = document.createTextNode(currentLineNumber);
-      addLineNumber.appendChild(numberOfLine);
-      document.getElementById("inputLine" + currentLineNumber).append(addLineNumber);
+      addLineNumber.append(numberOfLine);
+      document.getElementById("inputLine" + currentLineNumber).before(addLineNumber);
       break;
     case 8:
       // remove last character
@@ -212,12 +212,14 @@ body.onkeydown = function (e) {
       break;
     case 38:
       // 38 : "up arrow",
+      currentLineNumber--;
       break;
     case 39:
       // 39 : "right arrow",
       break;
     case 40:
       // 40 : "down arrow",
+      currentLineNumber++;
       break;
     default:
       document.getElementById("inputLine" + currentLineNumber).append(keyCodes[e.keyCode]);
