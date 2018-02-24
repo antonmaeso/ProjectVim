@@ -2,7 +2,6 @@
 var currentLineNumber = 0;
 var maxLineNumber = 0;
 var currentColumnNumber = 0;
-var maxColunNumberOnLine = 0;
 
 var keyCodes = {
   0 : "That key has no keycode",
@@ -148,12 +147,12 @@ var keyCodes = {
   181 : "mute/unmute (firefox)",
   182 : "decrease volume level (firefox)",
   183 : "increase volume level (firefox)",
-  186 : "semi-colon / ñ",
-  187 : "equal sign",
-  188 : "comma",
-  189 : "dash",
-  190 : "period",
-  191 : "forward slash / ç",
+  186 : ";",
+  187 : "=",
+  188 : ",",
+  189 : "-",
+  190 : ".",
+  191 : "/",
   192 : "grave accent / ñ / æ / ö",
   193 : "?, / or °",
   194 : "numpad period (chrome)",
