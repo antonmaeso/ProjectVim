@@ -210,7 +210,7 @@ body.onkeydown = function (e) {
       document.getElementById("line" + currentLineNumber).append(spaceBar);
       break;
     default:
-      console.log("line number = "+currentLineNumber);
       document.getElementById("line" + currentLineNumber).append(keyCodes[e.keyCode]);
   }
+
 };
