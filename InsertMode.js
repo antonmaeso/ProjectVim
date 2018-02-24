@@ -7,7 +7,7 @@ var keyCodes = {
   0 : "That key has no keycode",
   3 : "break",
   8 : "backspace / delete",
-  9 : "tab",
+  9 : "\u00A0\u00A0\u00A0\u00A0",
   12 : 'clear',
   13 : "enter",
   16 : "shift",
@@ -20,7 +20,7 @@ var keyCodes = {
   27 : "escape",
   28 : "conversion",
   29 : "non-conversion",
-  32 : "space",
+  32 : "\u00A0",
   33 : "page up",
   34 : "page down",
   35 : "end",
@@ -182,11 +182,6 @@ body.onkeydown = function (e) {
     e.preventDefault();
   }
   switch(e.keyCode) {
-    case 9:
-      tab = document.createElement("span");
-      tab.setAttribute("class", "tab");
-      document.getElementById("inputLine" + currentLineNumber).append(tab);
-      break;
     case 13:
       // make line break on current line
       lineBreak = document.createElement("br");
@@ -212,21 +207,21 @@ body.onkeydown = function (e) {
       contentOfLine = contentOfLine.slice(0, -1);
       document.getElementById("inputLine" + currentLineNumber).innerHTML = contentOfLine;
       break;
-    case 32:
-      spaceBar = document.createElement("span");
-      spaceBar.setAttribute("class", "spaceBar");
-      document.getElementById("inputLine" + currentLineNumber).append(spaceBar);
-      break;
     case 37:
+      // 37 : "left arrow",
       break;
     case 38:
+      // 38 : "up arrow",
       break;
     case 39:
+      // 39 : "right arrow",
       break;
     case 40:
+      // 40 : "down arrow",
       break;
     default:
       document.getElementById("inputLine" + currentLineNumber).append(keyCodes[e.keyCode]);
+      $("#inputLine" + currentLineNumber).text().length
   }
 
 };
