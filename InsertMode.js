@@ -1,5 +1,9 @@
 
 var currentLineNumber = 0;
+var maxLineNumber = 0;
+var currentColumnNumber = 0;
+var maxColunNumberOnLine = 0;
+
 var keyCodes = {
   0 : "That key has no keycode",
   3 : "break",
@@ -182,37 +186,48 @@ body.onkeydown = function (e) {
     case 9:
       tab = document.createElement("span");
       tab.setAttribute("class", "tab");
-      document.getElementById("line" + currentLineNumber).append(tab);
+      document.getElementById("inputLine" + currentLineNumber).append(tab);
       break;
     case 13:
       // make line break on current line
       lineBreak = document.createElement("br");
-      document.getElementById("line" + currentLineNumber).append(lineBreak);
+      document.getElementById("inputLine" + currentLineNumber).append(lineBreak);
       // create new line with
       newLine = document.createElement("span");
-      newLine.setAttribute("id", "line"+(currentLineNumber+1))
+      newLine.setAttribute("id", "inputLine"+(currentLineNumber+1))
       newLine.setAttribute("class", "text")
-      document.getElementById("line" + currentLineNumber).after(newLine);
+      document.getElementById("inputLine" + currentLineNumber).after(newLine);
       currentLineNumber++;
+      // set max Line Number to the number of ellements starting with inputLine
+      maxLineNumber = $('span[id^=inputLine]').length;
       // set line number on html
       addLineNumber = document.createElement("span");
       addLineNumber.setAttribute("class", "lineStart")
       var numberOfLine = document.createTextNode(currentLineNumber);
       addLineNumber.appendChild(numberOfLine);
-      document.getElementById("line" + currentLineNumber).append(addLineNumber);
+      document.getElementById("inputLine" + currentLineNumber).append(addLineNumber);
       break;
     case 8:
-      var str = document.getElementById("line" + currentLineNumber).innerHTML
-      str = str.slice(0, -1);
-      document.getElementById("line" + currentLineNumber).innerHTML = str;
+      // remove last character
+      var contentOfLine = document.getElementById("inputLine" + currentLineNumber).innerHTML
+      contentOfLine = contentOfLine.slice(0, -1);
+      document.getElementById("inputLine" + currentLineNumber).innerHTML = contentOfLine;
       break;
     case 32:
       spaceBar = document.createElement("span");
       spaceBar.setAttribute("class", "spaceBar");
-      document.getElementById("line" + currentLineNumber).append(spaceBar);
+      document.getElementById("inputLine" + currentLineNumber).append(spaceBar);
+      break;
+    case 37:
+      break;
+    case 38:
+      break;
+    case 39:
+      break;
+    case 40:
       break;
     default:
-      document.getElementById("line" + currentLineNumber).append(keyCodes[e.keyCode]);
+      document.getElementById("inputLine" + currentLineNumber).append(keyCodes[e.keyCode]);
   }
 
 };
