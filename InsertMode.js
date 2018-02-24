@@ -202,7 +202,9 @@ body.onkeydown = function (e) {
       document.getElementById("line" + currentLineNumber).append(addLineNumber);
       break;
     case 8:
-      document.querySelector('#text').append("back_space");
+      var str = document.getElementById("line" + currentLineNumber).innerHTML
+      str = str.slice(0, -1);
+      document.getElementById("line" + currentLineNumber).innerHTML = str;
       break;
     case 32:
       spaceBar = document.createElement("span");
