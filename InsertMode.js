@@ -224,20 +224,20 @@ body.onkeydown = function (e) {
     e.preventDefault();
   }
 
+  // changing modes
+
   if (currentMode == "Insert Mode"){
     InsertMode(e);
-    document.getElementById("mode").innerHTML = currentMode;
-  } else if (currentMode == "Default Mode") {
-    document.getElementById("mode").innerHTML = currentMode;
   }
-
-  // changing modes
+  
   if (e.keyCode == 73) {
     currentMode = "Insert Mode"
-
+    document.getElementById("mode").innerHTML = "Insert Mode";
   } else if (e.keyCode == 27) {
     currentMode = "Default Mode"
+    document.getElementById("mode").innerHTML = "Default Mode";
   }
+
 
 };
 
