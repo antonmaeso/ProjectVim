@@ -19,7 +19,7 @@ var keyCodes = {
   20 : "caps lock",
   21 : "hangul",
   25 : "hanja",
-  27 : "escape",
+  27 : "",
   28 : "conversion",
   29 : "non-conversion",
   32 : "\u00A0",
@@ -224,14 +224,19 @@ body.onkeydown = function (e) {
     e.preventDefault();
   }
 
+  if (currentMode == "Insert Mode"){
+    InsertMode(e);
+    document.getElementById("mode").innerHTML = currentMode;
+  } else if (currentMode == "Default Mode") {
+    document.getElementById("mode").innerHTML = currentMode;
+  }
+
   // changing modes
   if (e.keyCode == 73) {
     currentMode = "Insert Mode"
-  }
 
-  if (currentMode == "Insert Mode"){
-    InsertMode(e);
-    document.getElementById("mode").innerHTML = "Insert Mode";
+  } else if (e.keyCode == 27) {
+    currentMode = "Default Mode"
   }
 
 };
