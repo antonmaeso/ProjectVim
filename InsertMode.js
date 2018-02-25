@@ -224,12 +224,11 @@ body.onkeydown = function (e) {
     e.preventDefault();
   }
 
-  // changing modes
-
+  // changing modes I think it is best to use a string
   if (currentMode == "Insert Mode"){
     InsertMode(e);
   }
-  
+
   if (e.keyCode == 73) {
     currentMode = "Insert Mode"
     document.getElementById("mode").innerHTML = "Insert Mode";
