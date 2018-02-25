@@ -2,6 +2,8 @@
 var currentLineNumber = 0;
 var maxLineNumber = 0;
 var currentColumnNumber = 0;
+var currentMode = "Default";
+
 
 var keyCodes = {
   0 : "That key has no keycode",
@@ -175,14 +177,20 @@ var keyCodes = {
   255 : "toggle touchpad"
 };
 
-var body = document.querySelector('body');
+function InsertMode(e) {
+    switch(e.keyCode) {
+      case 13:
+        createNewLine();
+        break;
+      case 8:
+        backSpace();
+        break;
+      default:
+        document.getElementById("inputLine" + currentLineNumber).append(keyCodes[e.keyCode]);
+        $("#inputLine" + currentLineNumber).text().length
+    }
 
-body.onkeydown = function (e) {
-  if ( !e.metaKey ) {
-    e.preventDefault();
-  }
-  switch(e.keyCode) {
-    case 13:
+    function createNewLine() {
       // make line break on current line
       lineBreak = document.createElement("br");
       document.getElementById("inputLine" + currentLineNumber).append(lineBreak);
@@ -200,30 +208,49 @@ body.onkeydown = function (e) {
       var numberOfLine = document.createTextNode(currentLineNumber);
       addLineNumber.append(numberOfLine);
       document.getElementById("inputLine" + currentLineNumber).before(addLineNumber);
-      break;
-    case 8:
+    }
+
+    function backSpace() {
       // remove last character
       var contentOfLine = document.getElementById("inputLine" + currentLineNumber).innerHTML
       contentOfLine = contentOfLine.slice(0, -1);
       document.getElementById("inputLine" + currentLineNumber).innerHTML = contentOfLine;
-      break;
-    case 37:
-      // 37 : "left arrow",
-      break;
-    case 38:
-      // 38 : "up arrow",
-      currentLineNumber--;
-      break;
-    case 39:
-      // 39 : "right arrow",
-      break;
-    case 40:
-      // 40 : "down arrow",
-      currentLineNumber++;
-      break;
-    default:
-      document.getElementById("inputLine" + currentLineNumber).append(keyCodes[e.keyCode]);
-      $("#inputLine" + currentLineNumber).text().length
+    }
+}
+
+var body = document.querySelector('body');
+body.onkeydown = function (e) {
+  if ( !e.metaKey ) {
+    e.preventDefault();
+  }
+
+  // changing modes
+  if (e.keyCode == 73) {
+    currentMode = "Insert Mode"
+  }
+
+  if (currentMode == "Insert Mode"){
+    InsertMode(e);
+    document.getElementById("mode").innerHTML = "Insert Mode";
   }
 
 };
+
+
+// Navigation should have its own function since it is always availible
+// case 37:
+//   // 37 : "left arrow",
+//   break;
+// case 38:
+//   // 38 : "up arrow",
+//   currentLineNumber--;
+//   break;
+// case 39:
+//   // 39 : "right arrow",
+//   break;
+// case 40:
+//   // 40 : "down arrow",
+//   currentLineNumber++;
+//   break;
+// default mode
+// visual mode
